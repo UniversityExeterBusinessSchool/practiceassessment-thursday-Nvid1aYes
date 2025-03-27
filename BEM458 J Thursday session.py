@@ -1,10 +1,10 @@
 #######################################################################################################################################################
 # 
-# Name:
-# SID:
-# Exam Date:
-# Module:
-# Github link for this assignment:  
+# Name:Mujian Guo
+# SID:740085142
+# Exam Date:27/03/2025
+# Module:BEMM458
+# Github link for this assignment:  https://github.com/UniversityExeterBusinessSchool/practiceassessment-thursday-Nvid1aYes
 #
 # ######################################################################################################################################################
 # Instruction 1. Read the questions and instructions carefully and complete scripts.
@@ -52,6 +52,21 @@ key_comments = {
 # Initialize an empty list to store (start, end) positions
 my_list = []
 
+word1 = key_comments[7]
+word2 = key_comments[2]
+# Find the start and end positions of the words in the sentence
+start_word1 = customer_feedback.find(word1)
+end_word1 = customer_feedback.find(word1) + len(word1)
+
+start_word2 = customer_feedback.find(word2)
+end_word2 = customer_feedback.find(word2) + len(word2)
+# Append the (start, end) positions to the list
+my_list = [(start_word1, end_word1), (start_word2, end_word2)]
+print(my_list)
+
+#OUTPUT
+#>>> print(my_list)
+#[(129, 136), (114, 120)]
 ##########################################################################################################################################################
 
 # Question 2 - Functions
@@ -59,18 +74,38 @@ my_list = []
 # Operating Profit Margin, Revenue per Customer, Customer Churn Rate, and Average Order Value. Use Python functions 
 # that will take the values and return the metric needed. Use the first two and last two digits of your ID number as the input values.
 
-# Insert first two digits of ID number here:
-# Insert last two digits of ID number here:
+# Insert first two digits of ID number here:74
+# Insert last two digits of ID number here:42
 
 # Write your code for Operating Profit Margin
-
+def Operating_Profit_Margin(operating_profit, revenue):
+    return((operating_profit /revenue )*100)
 # Write your code for Revenue per Customer
-
+def Revenue_per_Customer(total_revenue, number_of_customers):
+    return(total_revenue / number_of_customers)
 # Write your code for Customer Churn Rate
-
+def Customer_Churn_Rate(lost_customers, total_customers_at_start):
+    return((lost_customers / total_customers_at_start) *100)
 # Write your code for Average Order Value
-
+def Average_Order_Value(total_revenue, number_of_orders):
+    return(total_revenue / number_of_orders)
 # Call your designed functions here
+# Provide comments explaining the output
+Operating_Profit_Margin(74,42)
+Revenue_per_Customer(74,42)
+Customer_Churn_Rate(74,42)
+Average_Order_Value(74,42)
+
+#OUTPUT
+#>>> Operating_Profit_Margin(74,42)
+#176.19047619047618
+#>>> Revenue_per_Customer(74,42)
+#1.7619047619047619
+#>>> Customer_Churn_Rate(74,42)
+#176.19047619047618
+#>>> Average_Order_Value(74,42)
+#1.7619047619047619
+
 
 ##########################################################################################################################################################
 
@@ -98,6 +133,30 @@ Price (£)    Demand (Units)
 
 # Write your code here
 
+import numpy as np
+import pandas as pd
+from sklearn.linear_model import LinearRegression
+
+price = np.array([20,25,30,35,40,45,50,55,60,65,70]).reshape(-1,1)
+demand = np.array([300,280,260,240,210,190,160,140,120,100,85]).reshape(-1,1)
+
+model = LinearRegression()
+model.fit(price,demand)
+
+# 1. The price at which the store can maximize revenue
+a= model.coef_[0]
+b = model.intercept_
+
+price_max_revenue = -b/(a*2)
+print(f"price maxe revenue is :{price_max_revenue}")
+
+predicted_demand = model.predict([[52]])
+print(f"predicted demand for price 52 :{predicted_demand}")
+
+#OUTPUT
+#price maxe revenue is :[43.64604462]
+#predicted demand for price 52 :[[158.17272727]]
+
 ##########################################################################################################################################################
 
 # Question 4 - Debugging; Plotting and data visualization chart
@@ -106,17 +165,24 @@ import random
 import matplotlib.pyplot as plt
 
 # Generate 100 random numbers between 1 and student id number
-max-value = integer(input("Enter your Student ID: "))
+max_value = int(input("Enter your Student ID:740085142"))
 random_numbers = [random.randint(1, max_value) for i in range(0,100)]
 
 # Plotting the numbers in a line chart
-plt.plot(random_numbers, marker='O', markercolor='green', markeredgcolor='red', linestyle='--', lable='Random Numbers', color='blue');
-plt.title(Line Chart of 100 Random Numbers)
-plt.xlabel="Index"
-plt.ylabel="Random Number"
-plt.legend('---')
+plt.plot(random_numbers, marker='o', markerfacecolor='green', markeredgecolor='red', linestyle='--', label='Random Numbers', color='blue');
+plt.title("Line Chart of 100 Random Numbers")
+plt.xlabel("Index")
+plt.ylabel("Random Number")
+plt.legend()
 plt.grid(True)
 plt.show()
 
-
+# Explain the error in the code and rectify it.
+#integer > int
+#maker = "O" > marker = "o"
+#makerfacecolor > markerfacecolor
+#makeredgecolor > markeredgecolor
+#xlabel > xlabel()
+#ylabel > ylabel()
+#legend > legend()
 
